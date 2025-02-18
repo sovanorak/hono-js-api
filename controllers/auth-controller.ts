@@ -3,7 +3,7 @@ import { setCookie } from "hono/cookie";
 import { HTTPException } from "hono/http-exception";
 import { sign } from "hono/jwt";
 
-export const AuthController = async (c: Context) => {
+export const LoginController = async (c: Context) => {
   const { email, password } = await c.req.json();
 
   //static password
