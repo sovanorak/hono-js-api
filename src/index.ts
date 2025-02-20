@@ -1,13 +1,13 @@
-import { zValidator } from "@hono/zod-validator";
 import { Hono } from "hono";
 import { logger } from "hono/logger";
-import { schema } from "../schemas";
 import auth from "../routes/auth";
+import book from "../routes/book";
 
 const app = new Hono();
-
 app.use(logger());
 
+//Routes
 app.route("/login", auth);
+app.route("/books", book);
 
 export default app;
