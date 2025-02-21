@@ -1,8 +1,8 @@
 import { z } from "zod";
 
-//Define zod schema for validation
-export const schema = z.object({
+export const UserSchema = z.object({
   email: z.string().email(),
+  name: z.string().max(50),
   password: z
     .string()
     .min(8)
