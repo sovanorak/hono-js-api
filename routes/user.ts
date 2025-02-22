@@ -24,17 +24,30 @@ app.post("/", zValidator("json", UserSchema), async (c) => {
 
 //Find all users
 app.get("/", async (c) => {
-  //pagination
+  
   const page = Number(c.req.query("page") || 1);
   const limit = Number(c.req.query("limit") || 10);
+  const name = (c.req.query("name") as string) || "";
 
   const defaultPaginate = {
-    skip: (page - 1) * limit, // offset formula
+    skip: (page - 1) * limit, 
     take: limit,
   };
-
-  const data = await prisma.user.findMany(defaultPaginate);
-  const count = await prisma.user.count(defaultPaginate);
+  const deafaultWhereCondition = {
+    where: {
+      name: {
+        contains: name,
+      },
+    },
+  };
+  const data = await prisma.user.findMany({
+    ...deafaultWhereCondition,
+    ...defaultPaginate,
+  });
+  const count = await prisma.user.count({
+    ...deafaultWhereCondition,
+    ...defaultPaginate,
+  });
   return c.json({ data, count });
 });
 
