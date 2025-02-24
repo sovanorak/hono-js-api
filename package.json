@@ -1,9 +1,11 @@
 {
   "name": "learn-hono",
   "scripts": {
-    "dev": "bun run --hot src/index.ts"
+    "dev": "bun run --hot src/index.ts",
+    "seed": "bun run prisma/seed.ts"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.5.0",
     "@hono/swagger-ui": "^0.5.0",
     "@hono/zod-openapi": "^0.18.4",
     "@hono/zod-validator": "^0.4.3",
@@ -14,6 +16,9 @@
   "devDependencies": {
     "@prisma/client": "^6.4.1",
     "@types/bun": "latest",
-    "prisma": "^6.4.1"
+    "@types/node": "^22.13.5",
+    "prisma": "^6.4.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
   }
 }
